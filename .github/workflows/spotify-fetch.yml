@@ -1,0 +1,44 @@
+# .github/workflows/spotify-fetch.yml
+name: Fetch Spotify Recent Tracks
+
+on:
+  schedule:
+    # Runs at 6 AM, 12 PM, 6 PM, and midnight UTC
+    - cron: '0 6,12,18,0 * * *'
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  fetch-tracks:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install spotipy
+        
+    - name: Create Spotify credentials file
+      run: |
+        echo '${{ secrets.SPOTIFY_CACHE }}' > .cache
+        
+    - name: Run Spotify fetch script
+      env:
+        SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+        SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+      run: python getrec_wo_duplicates.py
+      
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add recent_tracks_log.json
+        git diff --staged --quiet || git commit -m "Update recent tracks log $(date)"
+        git push
