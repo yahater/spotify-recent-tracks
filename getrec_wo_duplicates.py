@@ -8,8 +8,8 @@ LOG_FILE = "recent_tracks_log.json"
 
 # Setup Spotify auth
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-    client_id="d538883735cd45a7b1ba694cb0ac11f8",
-    client_secret="bbca4d94e6984097bf1463c8400c2c6c",
+    client_id=os.getenv("SPOTIFY_CLIENT_ID"),
+    client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
     redirect_uri="http://127.0.0.1:8888/callback",
     scope="user-read-recently-played",
     cache_path=".cache"
