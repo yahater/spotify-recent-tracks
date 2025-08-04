@@ -56,8 +56,9 @@ def generate_html_page():
         }}
         .track-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
             gap: 20px;
+            width: 100%;
         }}
         .track-card {{
             background: rgba(255, 255, 255, 0.1);
@@ -65,6 +66,10 @@ def generate_html_page():
             padding: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(29, 185, 84, 0.3);
+            width: 100%;
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow: hidden;
         }}
         .track-card:hover {{
             transform: translateY(-5px);
@@ -86,16 +91,53 @@ def generate_html_page():
             margin: 0 0 5px 0;
             font-size: 1.2em;
             color: #1db954;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }}
         .track-info .artists {{
             margin: 0;
             color: #b3b3b3;
             font-size: 0.9em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }}
         .album-name {{
             color: #888;
             font-size: 0.85em;
             margin: 10px 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }}
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {{
+            .container {{
+                padding: 15px;
+                margin: 10px;
+            }}
+            
+            .track-grid {{
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }}
+            
+            .track-card {{
+                padding: 15px;
+            }}
+            
+            .track-header {{
+                flex-direction: column;
+                align-items: flex-start;
+            }}
+            
+            .album-image, .no-image {{
+                margin-right: 0;
+                margin-bottom: 10px;
+            }}
+            
+            h1 {{
+                font-size: 2em;
+            }}
         }}
         .played-at {{
             color: #666;
