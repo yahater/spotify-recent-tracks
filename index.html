@@ -34,8 +34,9 @@
         }
         .track-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
             gap: 20px;
+            width: 100%;
         }
         .track-card {
             background: rgba(255, 255, 255, 0.1);
@@ -43,6 +44,10 @@
             padding: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(29, 185, 84, 0.3);
+            width: 100%;
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow: hidden;
         }
         .track-card:hover {
             transform: translateY(-5px);
@@ -64,16 +69,53 @@
             margin: 0 0 5px 0;
             font-size: 1.2em;
             color: #1db954;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         .track-info .artists {
             margin: 0;
             color: #b3b3b3;
             font-size: 0.9em;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
         .album-name {
             color: #888;
             font-size: 0.85em;
             margin: 10px 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            .track-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .track-card {
+                padding: 15px;
+            }
+            
+            .track-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .album-image, .no-image {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
         }
         .played-at {
             color: #666;
@@ -110,10 +152,25 @@
     <div class="container">
         <h1>🎵 My Spotify Listening History</h1>
         <div class="stats">
-            <p>Total tracks: 511 | Last updated: August 04, 2025 at 11:58 AM</p>
+            <p>Total tracks: 512 | Last updated: August 04, 2025 at 12:37 PM</p>
         </div>
         
         <div class="track-grid">
+            <div class="track-card">
+                <div class="track-header">
+                    <img src="https://i.scdn.co/image/ab67616d0000b2737414d98ef8b2e755da84a951" alt="Album cover" class="album-image">
+                    <div class="track-info">
+                        <h3>Friend For Life (with Medium Build)</h3>
+                        <p class="artists">X Ambassadors, Medium Build</p>
+                    </div>
+                </div>
+                <div class="album-name">📀 Friend For Life (with Medium Build)</div>
+                <div class="track-links">
+                    <a href="https://open.spotify.com/track/7BE4sJl4U5kPpphtYCq086" target="_blank">🎵 Track</a>
+                    <a href="https://open.spotify.com/album/6QcE06gxBT4Son5ZgCzY0n" target="_blank">💿 Album</a>
+                </div>
+                <div class="played-at">🕒 August 04, 2025 at 12:17 PM</div>
+            </div>
             <div class="track-card">
                 <div class="track-header">
                     <img src="https://i.scdn.co/image/ab67616d0000b273d6176a711e031d6522840c52" alt="Album cover" class="album-image">
