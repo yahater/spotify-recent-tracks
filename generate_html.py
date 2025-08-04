@@ -113,7 +113,7 @@ def generate_html_page():
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {{
             .container {{
-                padding: 15px;
+                padding: 10px;
                 margin: 0px;
             }}
             
