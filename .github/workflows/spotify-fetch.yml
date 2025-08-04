@@ -35,10 +35,13 @@ jobs:
         SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
       run: python getrec_wo_duplicates.py
       
+    - name: Generate HTML page
+      run: python generate_html.py
+      
     - name: Commit and push changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add recent_tracks_log.json
-        git diff --staged --quiet || git commit -m "Update recent tracks log $(date)"
+        git add recent_tracks_log.json index.html
+        git diff --staged --quiet || git commit -m "Update recent tracks log and HTML page $(date)"
         git push
