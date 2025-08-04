@@ -113,8 +113,8 @@ def generate_html_page():
         /* Mobile responsive adjustments */
         @media (max-width: 768px) {{
             .container {{
-                padding: 5px;
-                margin: 2px;
+                padding: 15px;
+                margin: 0px;
             }}
             
             .track-grid {{
