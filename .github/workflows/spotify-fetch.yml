@@ -35,6 +35,20 @@ jobs:
         SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
       run: python getrec_wo_duplicates.py
       
+    - name: Report Spotify authentication failure
+      if: failure()
+      run: |
+        echo "============================================================"
+        echo "⚠️ SPOTIFY AUTHENTICATION FAILED"
+        echo "============================================================"
+        echo ""
+        echo "The Spotify fetch script failed."
+        echo ""
+        echo "If the error says 'Refresh token revoked',"
+        echo "replace the SPOTIFY_CACHE GitHub Secret."
+        echo ""
+        echo "============================================================"
+      
     - name: Generate HTML page
       run: python generate_html.py
       
