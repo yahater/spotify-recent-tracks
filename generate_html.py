@@ -181,6 +181,7 @@ def generate_html_page():
         <h1>🎵 My Spotify Listening History</h1>
         <div class="stats">
             <p>Total tracks: {len(tracks)} | Last updated: {datetime.now().strftime('%B %d, %Y at %I:%M %p')}</p>
+            <p><a href="player.html" style="color:#1db954;">🎧 Open live player</a></p>
         </div>
         
         <div class="track-grid">"""
