@@ -9,7 +9,7 @@
       Redirect URI (e.g. https://yourname.github.io/spotify-recent-tracks/player.html)
    ========================================================================= */
 
-const CLIENT_ID = "PASTE_YOUR_SPOTIFY_CLIENT_ID_HERE";
+const CLIENT_ID = "d538883735cd45a7b1ba694cb0ac11f8";
 const REDIRECT_URI = window.location.origin + window.location.pathname;
 const SCOPES = [
   "streaming",
