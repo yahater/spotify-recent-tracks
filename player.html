@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spotify — Live Player</title>
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="stylesheet" href="player.css">
+</head>
+<body>
+
+  <!-- Logged-out screen -->
+  <div id="login-screen" class="login-screen hidden">
+    <div class="login-box">
+      <div class="login-title">spotui</div>
+      <p class="login-sub">connect your account to browse your library and control playback</p>
+      <button id="login-btn" class="login-btn">[ Connect to Spotify ]</button>
+      <p id="login-error" class="login-error hidden"></p>
+    </div>
+  </div>
+
+  <!-- Main app -->
+  <div id="app" class="app hidden">
+
+    <div class="titlebar">
+      <div class="panel search-panel">
+        <span class="panel-label">Search</span>
+        <input id="search-input" class="search-input" type="text" placeholder="Search tracks… (Enter to search)" autocomplete="off">
+      </div>
+      <div class="panel help-panel">
+        <span class="panel-label">Help</span>
+        <span class="help-text">Type ?</span>
+      </div>
+      <button id="logout-btn" class="logout-btn" title="Disconnect">⏻</button>
+    </div>
+
+    <div class="main-row">
+      <div class="sidebar">
+        <div class="panel library-panel">
+          <span class="panel-label">Library</span>
+          <ul id="library-list" class="nav-list">
+            <li data-view="discover" class="nav-item active">Discover</li>
+            <li data-view="recent" class="nav-item">Recently Played</li>
+            <li data-view="top" class="nav-item">Top Tracks</li>
+            <li data-view="liked" class="nav-item">♡ Liked Songs</li>
+          </ul>
+        </div>
+        <div class="panel playlists-panel">
+          <span class="panel-label">Playlists</span>
+          <ul id="playlists-list" class="nav-list scroll">
+            <li class="nav-item dim">loading…</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel songs-panel">
+        <span class="panel-label" id="songs-panel-label">Songs</span>
+        <div class="songs-header">
+          <span class="col-title">Title</span>
+          <span class="col-artist">Artist</span>
+          <span class="col-album">Album</span>
+        </div>
+        <ul id="songs-list" class="songs-list"></ul>
+      </div>
+    </div>
+
+    <div class="playerbar">
+      <div class="status-line">
+        <span id="status-state">Paused</span>
+        <span class="dim">(spotui</span> | Shuffle: <span id="status-shuffle">Off</span> | Repeat: <span id="status-repeat">Off</span> | Volume: <span id="status-volume">70%</span><span class="dim">)</span>
+      </div>
+      <div class="nowplaying">
+        <div id="now-track" class="now-track">Nothing playing</div>
+        <div id="now-artist" class="now-artist">—</div>
+      </div>
+      <div class="controls">
+        <button id="btn-prev" class="ctrl-btn">[Prev]</button>
+        <button id="btn-playpause" class="ctrl-btn">[Play/Pause]</button>
+        <button id="btn-next" class="ctrl-btn">[Next]</button>
+        <button id="btn-shuffle" class="ctrl-btn">[Shuffle]</button>
+        <button id="btn-repeat" class="ctrl-btn">[Repeat]</button>
+        <button id="btn-like" class="ctrl-btn">[Like]</button>
+        <button id="btn-volminus" class="ctrl-btn">[Vol-]</button>
+        <button id="btn-volplus" class="ctrl-btn">[Vol+]</button>
+      </div>
+      <div class="progress-row">
+        <span id="time-elapsed" class="time">0:00</span>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <span id="time-total" class="time">0:00</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://sdk.scdn.co/spotify-player.js"></script>
+  <script src="player.js"></script>
+</body>
+</html>
